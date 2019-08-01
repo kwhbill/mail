@@ -19,6 +19,21 @@ router.get('/list', function(req, res) {
         })
     })
 });
+router.post('/update', function(req, res) {
+    console.log(req.body);
+    Mail.findOneAndUpdate({_id:req.body._id},req.body,{},(err)=>{
+        console.log(err,'err');
+        res.send(responseData)
+    })
+});
+router.post('/delete', function(req, res) {
+    console.log(req.body,'req.bodyreq.body');
+    
+    Mail.findOneAndRemove({_id:req.body._id}).then((err,mail)=>{ 
+        console.log(mail);
+        res.send(responseData)
+    })
+});
 router.post('/add', function(req, res) {
     console.log(req.body);
     var  name = req.body.name;
